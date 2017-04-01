@@ -20,10 +20,16 @@ def detail(request, bathroom_id):
 		design_rating_sum += rating.design_rating
 		rating_n += 1
 	
+	cleanliness_rating = 'no ratings yet'
+	design_rating = 'no ratings yet'
+	if rating_n > 0:
+		cleanliness_rating = cleanliness_rating_sum / rating_n
+		design_rating = design_rating_sum / design_n
+	
 	return render(request, 'bathroom.html', {
 		'bathroom': bathroom,
-		'cleanliness_rating': cleanliness_rating_sum / rating_n,
-		'design_rating': design_rating_sum / rating_n
+		'cleanliness_rating': cleanliness_rating,
+		'design_rating': design_rating
 	})
 
 def vote(request, bathroom_id):

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
 class Bathroom(models.Model):
@@ -16,6 +17,7 @@ class Bathroom(models.Model):
 
 class Rating(models.Model):
 	bathroom = models.ForeignKey(Bathroom, on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	cleanliness_rating = models.PositiveSmallIntegerField()
 	design_rating = models.PositiveSmallIntegerField()
 	
