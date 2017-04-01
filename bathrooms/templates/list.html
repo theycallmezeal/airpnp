@@ -2,6 +2,6 @@
 
 {% if bathroom_list %}
 	{% for bathroom in bathroom_list %}
-		<p><a href="{{ bathroom.id }}">{{ bathroom.name }}</a></p>
+		<p><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></p>
 	{% endfor %}
 {% endif %}

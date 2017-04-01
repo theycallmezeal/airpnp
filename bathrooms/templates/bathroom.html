@@ -8,3 +8,27 @@
 	<p>Hand dryers: {{bathroom.hand_dryers}}</h1>
 	<p>Windows: {{bathroom.windows}}</h1>
 {% endif %}
+
+<h2>Add a rating</h2>
+
+<form action="{% url 'bathrooms:vote' bathroom.id%}" method="post">
+
+{% csrf_token %}
+
+<input type="radio" name="cleanliness" value="1" />
+<label for="1">1</label><br />
+
+<input type="radio" name="cleanliness" value="2" />
+<label for="2">2</label><br />
+
+<input type="radio" name="cleanliness" value="3" />
+<label for="3">3</label><br />
+
+<input type="radio" name="cleanliness" value="4" />
+<label for="4">4</label><br />
+
+<input type="radio" name="cleanliness"  value="5" />
+<label for="5">5</label><br />
+
+<input type="submit" value="Submit" />
+</form>
