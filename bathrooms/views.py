@@ -2,12 +2,12 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from .models import Bathroom
 
-def index(request):
+def list(request):
 	bathroom_list = Bathroom.objects.all()
 	vars = {
 		'bathroom_list': bathroom_list
 	}
-	return render(request, 'index.html', vars)
+	return render(request, 'list.html', vars)
 	
 def detail(request, bathroom_id):
 	bathroom = get_object_or_404(Bathroom, pk=bathroom_id)
