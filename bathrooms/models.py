@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 
 class Bathroom(models.Model):
 	name = models.CharField(max_length=100)
+	gender = models.PositiveSmallIntegerField() # 0 = male; 1 = female; 2 = gender-neutral
 	urinals = models.PositiveSmallIntegerField()
 	stalls = models.PositiveSmallIntegerField()
 	handicap_stalls = models.PositiveSmallIntegerField()

@@ -26,12 +26,19 @@ def detail(request, bathroom_id):
 	if rating_n > 0:
 		cleanliness_rating = cleanliness_rating_sum / rating_n
 		amenities_rating = amenities_rating_sum / rating_n
+		
+	gender = 'Mens\''
+	if bathroom.gender == 1:
+		gender = 'Womens\''
+	if bathroom.gender == 2:
+		gender = 'Gender-neutral'
 	
 	return render(request, 'bathrooms/bathroom.html', {
 		'bathroom': bathroom,
 		'cleanliness_rating': cleanliness_rating,
 		'amenities_rating': amenities_rating,
-		'images': images
+		'images': images,
+		'gender': gender
 	})
 
 def vote(request, bathroom_id):
