@@ -8,12 +8,16 @@
 	<p>Hand dryers: {{bathroom.hand_dryers}}</p>
 	<p>Windows: {{bathroom.windows}}</p>
 	<p>Cleanliness: {{cleanliness_rating}}</p>
-	<p>Design: {{design_rating}}</p>
+	<p>Amenities: {{amenities_rating}}</p>
 {% endif %}
+
+{% for image in images %}
+	<p><img src="{{ image.image.url }}" alt="Bathroom in {{ bathroom.name }}"></p>
+{% endfor %}
 
 <h2>Add a rating</h2>
 
-<form action="{% url 'bathrooms:vote' bathroom.id%}" method="post">
+<form action="{% url 'bathrooms:vote' bathroom.id %}" method="post">
 
 {% csrf_token %}
 <p>Cleanliness</p>
@@ -33,19 +37,19 @@
 <label for="5">5</label><br />
 
 <p>Design</p>
-<input type="radio" name="design" value="1" />
+<input type="radio" name="amenities" value="1" />
 <label for="1">1</label><br />
 
-<input type="radio" name="design" value="2" />
+<input type="radio" name="amenities" value="2" />
 <label for="2">2</label><br />
 
-<input type="radio" name="design" value="3" />
+<input type="radio" name="amenities" value="3" />
 <label for="3">3</label><br />
 
-<input type="radio" name="design" value="4" />
+<input type="radio" name="amenities" value="4" />
 <label for="4">4</label><br />
 
-<input type="radio" name="design" value="5" />
+<input type="radio" name="amenities" value="5" />
 <label for="5">5</label><br />
 
 <input type="submit" value="Submit" />

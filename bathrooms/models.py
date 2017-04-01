@@ -17,9 +17,15 @@ class Bathroom(models.Model):
 
 class Rating(models.Model):
 	bathroom = models.ForeignKey(Bathroom, on_delete=models.CASCADE)
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	cleanliness_rating = models.PositiveSmallIntegerField()
-	design_rating = models.PositiveSmallIntegerField()
+	amenities_rating = models.PositiveSmallIntegerField()
 	
 	def __str__(self):
 		return str(self.cleanliness_rating) + " star rating for " + self.bathroom.name
+		
+class Image(models.Model):
+	bathroom = models.ForeignKey(Bathroom, on_delete=models.CASCADE)
+	image = models.ImageField(upload_to='static/photos')
+	
+	def __str__(self):
+		return "Image of " + self.bathroom.name
