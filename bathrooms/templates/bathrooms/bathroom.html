@@ -1,0 +1,68 @@
+{% extends "bathrooms/template.html" %}
+
+{% block content %}
+
+{% if bathroom %}
+	<div class="box">
+		<h1>{{ bathroom.name }}</h1>
+	</div>
+	<div class="box">
+		<p><span class="stat">Urinals</span> <span class="value">{{bathroom.urinals}}</span></p>
+		<p><span class="stat">Stalls:</span> <span class="value">{{bathroom.stalls}}</span></p>
+		<p><span class="stat">Handicap stalls:</span> <span class="value">{{bathroom.handicap_stalls}}</span></p>
+		<p><span class="stat">Sinks:</span> <span class="value">{{bathroom.sinks}}</span></p>
+		<p><span class="stat">Paper towel dispensers:</span> <span class="value">{{bathroom.paper_towels}}</span></p>
+		<p><span class="stat">Hand dryers:</span> <span class="value">{{bathroom.hand_dryers}}</span></p>
+		<p><span class="stat">Windows:</span> <span class="value">{{bathroom.windows}}</span></p>
+		<p><span class="stat">Cleanliness:</span> <span class="value">{{cleanliness_rating}}</span></p>
+		<p><span class="stat">Amenities:</span> <span class="value">{{amenities_rating}}</span></p>
+	</div>
+{% endif %}
+
+<div class="box">
+{% for image in images %}
+	<p><img src="/bathrooms/{{ image.image.url }}" alt="Bathroom in {{ bathroom.name }}"></p>
+{% endfor %}
+</div>
+
+<div class="box">
+	<h2>Add a rating</h2>
+	
+	<form action="{% url 'bathrooms:vote' bathroom.id %}" method="post">
+		{% csrf_token %}
+		<p>Cleanliness</p>
+		<input type="radio" name="cleanliness" value="1" />
+		<label for="1">1</label><br />
+
+		<input type="radio" name="cleanliness" value="2" />
+		<label for="2">2</label><br />
+
+		<input type="radio" name="cleanliness" value="3" />
+		<label for="3">3</label><br />
+
+		<input type="radio" name="cleanliness" value="4" />
+		<label for="4">4</label><br />
+
+		<input type="radio" name="cleanliness" value="5" />
+		<label for="5">5</label><br />
+
+		<p>Design</p>
+		<input type="radio" name="amenities" value="1" />
+		<label for="1">1</label><br />
+
+		<input type="radio" name="amenities" value="2" />
+		<label for="2">2</label><br />
+
+		<input type="radio" name="amenities" value="3" />
+		<label for="3">3</label><br />
+
+		<input type="radio" name="amenities" value="4" />
+		<label for="4">4</label><br />
+
+		<input type="radio" name="amenities" value="5" />
+		<label for="5">5</label><br />
+
+		<input type="submit" value="Submit" />
+	</form>
+</div>
+{% endblock %}

@@ -4,7 +4,7 @@ from .models import Bathroom, Rating, Image
 
 def list(request):
 	bathroom_list = Bathroom.objects.all()
-	return render(request, 'list.html', {
+	return render(request, 'bathrooms/list.html', {
 		'bathroom_list': bathroom_list
 	})
 	
@@ -27,7 +27,7 @@ def detail(request, bathroom_id):
 		cleanliness_rating = cleanliness_rating_sum / rating_n
 		amenities_rating = amenities_rating_sum / rating_n
 	
-	return render(request, 'bathroom.html', {
+	return render(request, 'bathrooms/bathroom.html', {
 		'bathroom': bathroom,
 		'cleanliness_rating': cleanliness_rating,
 		'amenities_rating': amenities_rating,

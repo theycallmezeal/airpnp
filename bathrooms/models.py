@@ -25,7 +25,7 @@ class Rating(models.Model):
 		
 class Image(models.Model):
 	bathroom = models.ForeignKey(Bathroom, on_delete=models.CASCADE)
-	image = models.ImageField(upload_to='static/photos')
+	image = models.ImageField(upload_to='photos')
 	
 	def __str__(self):
 		return "Image of " + self.bathroom.name

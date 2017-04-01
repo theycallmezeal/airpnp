@@ -1,0 +1,13 @@
+{% extends "bathrooms/template.html" %}
+
+{% block content %}
+<div class="box">
+	<h1>Airpnp - all bathrooms</h1>
+
+	{% if bathroom_list %}
+		{% for bathroom in bathroom_list %}
+			<p><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></p>
+		{% endfor %}
+	{% endif %}
+</div>
+{% endblock %}
