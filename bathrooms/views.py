@@ -13,21 +13,24 @@ def detail(request, bathroom_id):
 	ratings = Rating.objects.filter(bathroom__id=bathroom_id)
 	
 	cleanliness_rating_sum = 0
-	cleanliness_rating_n = 0
+	design_rating_sum = 0
+	rating_n = 0
 	for rating in ratings:
 		cleanliness_rating_sum += rating.cleanliness_rating
-		cleanliness_rating_n += 1
-	
+		design_rating_sum += rating.design_rating
+		rating_n += 1
 	
 	return render(request, 'bathroom.html', {
 		'bathroom': bathroom,
-		'cleanliness_rating': cleanliness_rating_sum / cleanliness_rating_n
+		'cleanliness_rating': cleanliness_rating_sum / rating_n,
+		'design_rating': design_rating_sum / rating_n
 	})
 
 def vote(request, bathroom_id):
 	rating = Rating()
 	rating.bathroom = Bathroom.objects.get(id=bathroom_id)
 	rating.cleanliness_rating = request.POST['cleanliness']
+	rating.design_rating = request.POST['design']
 	rating.save()
 	
 	bathroom = get_object_or_404(Bathroom, id=bathroom_id)

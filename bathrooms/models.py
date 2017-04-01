@@ -17,6 +17,7 @@ class Bathroom(models.Model):
 class Rating(models.Model):
 	bathroom = models.ForeignKey(Bathroom, on_delete=models.CASCADE)
 	cleanliness_rating = models.PositiveSmallIntegerField()
+	design_rating = models.PositiveSmallIntegerField()
 	
 	def __str__(self):
 		return str(self.cleanliness_rating) + " star rating for " + self.bathroom.name
