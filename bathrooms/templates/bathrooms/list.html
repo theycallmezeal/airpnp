@@ -11,12 +11,12 @@
 			<th>Cleanliness</th>
 			<th>Amenities</th>
 		</tr>
-	{% for bathroom in bathroom_list %}
+	{% for bathroom, rating in bathroom_list %}
 		<tr>
 			<td><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></td>
-			<td><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></td>
-			<td><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></td>
-			<td><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></td>
+			<td>{{ bathroom.location.human_readable_location }}</td>
+			<td>{{ rating.cleanliness }}</td>
+			<td>{{ rating.amenities }}</td>
 		</tr>
 	{% endfor %}
 	</table>

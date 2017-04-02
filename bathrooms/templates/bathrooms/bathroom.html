@@ -3,8 +3,11 @@
 
 {% block content %}
 {% if bathroom %}
-	<h1>{{ bathroom.name }}</h1>
-	<h2>{{ gender }}</h2>
+	<div id="title">
+		<h1>{{ bathroom.name }}</h1>
+		<p id="back-link"><a href="{% url 'bathrooms:list' %}">Back</a></p>
+		<h2>{{ gender }}</h2>
+	</div>
 	
 	<div id="everything-but-title">
 		<div id="info">
@@ -20,8 +23,9 @@
 			
 			<hr>
 			
-			<p>Location: <a href="{{ bathroom.google_maps_link }}">{{ bathroom.human_readable_location }}</a></p>
-			{{ bathroom.google_maps_embed|safe|escape }}
+			<p>Location: <a href="{{ bathroom.location.google_maps_link }}">{{ bathroom.location.human_readable_location }}</a></p>
+			<p>{{ bathroom.location_desc }}</p>
+			{{ bathroom.location.google_maps_embed|safe|escape }}
 			
 		</div>
 		
@@ -31,9 +35,13 @@
 			<p class="score">Amenities: <span class="rating_num">{{ amenities_rating }}</span> <span class="rating_stars">{{ amenities_stars }}</span></p>
 			
 			<div id="images">
-			{% for image in images %}
-				<p><img src="{% static image.image.url %}" alt="Bathroom in {{ bathroom.name }}"></p>
-			{% endfor %}
+			{% if images|length == 0 %}
+				<p id="noimages">no images yet</p>
+			{% else %}
+				{% for image in images %}
+					<p><img src="{% static image.image.url %}" alt="Bathroom in {{ bathroom.name }}"></p>
+				{% endfor %}
+			{% endif %}
 			</div>
 			
 			<hr>
@@ -58,7 +66,7 @@
 				<input type="radio" name="cleanliness" value="5" />
 				<label for="5">5</label>
 
-				<p>Design</p>
+				<p>Amenities</p>
 				<input type="radio" name="amenities" value="1" />
 				<label for="1">1</label>
 
@@ -73,7 +81,6 @@
 
 				<input type="radio" name="amenities" value="5" />
 				<label for="5">5</label>
-				
 
 				<p><input type="submit" value="Submit" /></p>
 			</form>
