@@ -142,8 +142,9 @@ tr:nth-child(even) {
 	background-color: #eeeeee;
 }
 
-td:nth-child(3), td:nth-child(4) {
+td:nth-child(4), td:nth-child(5) {
 	color: #2cdd6a;
+	font-weight: bold;
 }
 
 iframe {

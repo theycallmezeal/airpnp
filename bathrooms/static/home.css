@@ -42,3 +42,7 @@ header p#button a:hover {
 	box-shadow: 2px 2px 0px 0px #197037;
 	color: #197037;
 }
+
+#but-actually {
+	text-align: center;
+}

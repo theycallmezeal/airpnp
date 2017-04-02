@@ -4,6 +4,25 @@ from .models import Bathroom, Rating, Image
 
 def list(request):
 	bathroom_list = Bathroom.objects.all()
+	
+	heading = 'all bathrooms'
+	
+	filtertype = request.GET.get('filtertype')
+	if filtertype == 'singles':
+		bathroom_list = Bathroom.objects.filter(urinals=1)
+		heading = 'single bathrooms'
+	if filtertype == 'mens':
+		bathroom_list = Bathroom.objects.filter(gender=0)
+		heading = 'mens\' rooms'
+	if filtertype == 'womens':
+		bathroom_list = Bathroom.objects.filter(gender=1)
+		heading = 'womens\' rooms'
+	if filtertype == 'genderneutral':
+		bathroom_list = Bathroom.objects.filter(gender=2)
+		heading = 'gender neutral rooms'
+	
+	length = len(bathroom_list)
+	
 	ratings_list = []
 	for bathroom in bathroom_list:
 		ratings = Rating.objects.filter(bathroom__id=bathroom.id)
@@ -15,7 +34,9 @@ def list(request):
 		ratings_list.append(starRatings)
 	
 	return render(request, 'bathrooms/list.html', {
-		'bathroom_list': zip(bathroom_list, ratings_list)
+		'bathroom_list': zip(bathroom_list, ratings_list),
+		'heading': heading,
+		'length': length
 	})
 	
 def detail(request, bathroom_id):
@@ -78,6 +99,9 @@ def getRatings(bathroom, ratings):
 	}
 	
 def numToStars(rating):
+	if rating == 'no ratings yet':
+		return rating
+	
 	rating = round(rating)
 	string = ''
 	for i in range(rating):

@@ -3,14 +3,15 @@
 {% block content %}
 
 <div id="title">
-	<h1>Airpnp - all bathrooms</h1>
+	<h1>Airpnp - {{ heading }}</h1>
 	<p id="navbutton"><a href="{% url 'index' %}">About Airpnp</a></p>
 </div>
 
-{% if bathroom_list %}
+{% if bathroom_list and length > 0%}
 	<table>
 		<tr>
 			<th>Bathroom</th>
+			<th>Gender</th>
 			<th>Location</th>
 			<th>Cleanliness</th>
 			<th>Amenities</th>
@@ -18,11 +19,24 @@
 	{% for bathroom, rating in bathroom_list %}
 		<tr>
 			<td><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></td>
+			<td>
+				{% if bathroom.gender == 0 %} Mens' {% endif %}
+				{% if bathroom.gender == 1 %} Womens' {% endif %}
+				{% if bathroom.gender == 2 %} Gender-neutral {% endif %}
+			</td>
 			<td>{{ bathroom.location.human_readable_location }}</td>
 			<td>{{ rating.cleanliness|safe|escape }}</td>
 			<td>{{ rating.amenities|safe|escape }}</td>
 		</tr>
 	{% endfor %}
 	</table>
+
+{% else %}
+
+<p>No bathrooms here :(</p>
+<p>Unfortunately you'll have to take your business elsewhere.</p>	
+	
 {% endif %}
+
+<p>Filter by: <a href="{% url 'bathrooms:list' %}">All</a> <a href="{% url 'bathrooms:list' %}?filtertype=singles">Singles</a> <a href="{% url 'bathrooms:list' %}?filtertype=mens">Mens'</a> <a href="{% url 'bathrooms:list' %}?filtertype=womens">Womens'</a> <a href="{% url 'bathrooms:list' %}?filtertype=genderneutral">Gender-neutral</a>
 {% endblock %}
