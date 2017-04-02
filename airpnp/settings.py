@@ -132,4 +132,4 @@ STATICFILES_DIRS = (
     STATIC_PATH,
 )
 
-MEDIA_URL = '/static/media/'
+MEDIA_ROOT = 'static/'
