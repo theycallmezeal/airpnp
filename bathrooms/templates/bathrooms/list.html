@@ -4,8 +4,21 @@
 <h1>Airpnp - all bathrooms</h1>
 
 {% if bathroom_list %}
+	<table>
+		<tr>
+			<th>Bathroom</th>
+			<th>Location</th>
+			<th>Cleanliness</th>
+			<th>Amenities</th>
+		</tr>
 	{% for bathroom in bathroom_list %}
-		<p><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></p>
+		<tr>
+			<td><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></td>
+			<td><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></td>
+			<td><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></td>
+			<td><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></td>
+		</tr>
 	{% endfor %}
+	</table>
 {% endif %}
 {% endblock %}

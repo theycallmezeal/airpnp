@@ -39,6 +39,10 @@ hr {
 	margin-right: 20px;
 }
 
+#rating h2 {
+	margin-top: 0px;
+}
+
 #stats {
 	background-color: #eeeeee;
 	border: solid 1px #777777;
@@ -56,4 +60,12 @@ hr {
 .value {
 	font-weight: bold;
 	float: right;
+}
+
+table {
+	width: 100%;
+}
+
+tr {
+	padding: 100px 0px;
 }

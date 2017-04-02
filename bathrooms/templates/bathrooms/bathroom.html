@@ -31,7 +31,7 @@
 			
 			<div id="images">
 			{% for image in images %}
-				<p><img src="/bathrooms/{{ image.image.url }}" alt="Bathroom in {{ bathroom.name }}"></p>
+				<p><img src="/{{ image.image.url }}" alt="Bathroom in {{ bathroom.name }}"></p>
 			{% endfor %}
 			</div>
 			
@@ -43,37 +43,38 @@
 				{% csrf_token %}
 				<p>Cleanliness</p>
 				<input type="radio" name="cleanliness" value="1" />
-				<label for="1">1</label><br />
+				<label for="1">1</label>
 
 				<input type="radio" name="cleanliness" value="2" />
-				<label for="2">2</label><br />
+				<label for="2">2</label>
 
 				<input type="radio" name="cleanliness" value="3" />
-				<label for="3">3</label><br />
+				<label for="3">3</label>
 
 				<input type="radio" name="cleanliness" value="4" />
-				<label for="4">4</label><br />
+				<label for="4">4</label>
 
 				<input type="radio" name="cleanliness" value="5" />
-				<label for="5">5</label><br />
+				<label for="5">5</label>
 
 				<p>Design</p>
 				<input type="radio" name="amenities" value="1" />
-				<label for="1">1</label><br />
+				<label for="1">1</label>
 
 				<input type="radio" name="amenities" value="2" />
-				<label for="2">2</label><br />
+				<label for="2">2</label>
 
 				<input type="radio" name="amenities" value="3" />
-				<label for="3">3</label><br />
+				<label for="3">3</label>
 
 				<input type="radio" name="amenities" value="4" />
-				<label for="4">4</label><br />
+				<label for="4">4</label>
 
 				<input type="radio" name="amenities" value="5" />
-				<label for="5">5</label><br />
+				<label for="5">5</label>
+				
 
-				<input type="submit" value="Submit" />
+				<p><input type="submit" value="Submit" /></p>
 			</form>
 		</div>
 	</div>
