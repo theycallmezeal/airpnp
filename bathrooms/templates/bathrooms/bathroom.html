@@ -1,4 +1,5 @@
 {% extends "bathrooms/template.html" %}
+{% load static %}
 
 {% block content %}
 {% if bathroom %}
@@ -19,19 +20,19 @@
 			
 			<hr>
 			
-			<p>Location goes here</p>
+			<p>Location: <a href="{{ bathroom.google_maps_link }}">{{ bathroom.human_readable_location }}</a></p>
+			{{ bathroom.google_maps_embed|safe|escape }}
 			
 		</div>
 		
 		<div id="rating">
 			<h2>Rating</h2>
-			<p class="score">Cleanliness: {{ cleanliness_rating }}</p>
-			<p class="score">Amenities: {{ amenities_rating }}</p>
-			
+			<p class="score">Cleanliness: <span class="rating_num">{{ cleanliness_rating }}</span> <span class="rating_stars">{{ cleanliness_stars }}</span></p>
+			<p class="score">Amenities: <span class="rating_num">{{ amenities_rating }}</span> <span class="rating_stars">{{ amenities_stars }}</span></p>
 			
 			<div id="images">
 			{% for image in images %}
-				<p><img src="/{{ image.image.url }}" alt="Bathroom in {{ bathroom.name }}"></p>
+				<p><img src="{% static image.image.url %}" alt="Bathroom in {{ bathroom.name }}"></p>
 			{% endfor %}
 			</div>
 			

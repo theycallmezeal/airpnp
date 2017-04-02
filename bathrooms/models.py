@@ -13,6 +13,10 @@ class Bathroom(models.Model):
 	hand_dryers = models.PositiveSmallIntegerField()
 	windows = models.PositiveSmallIntegerField()
 	
+	human_readable_location = models.CharField(max_length=100)
+	google_maps_link = models.CharField(max_length=50)
+	google_maps_embed = models.CharField(max_length=500)
+	
 	def __str__(self):
 		return self.name
 
@@ -26,7 +30,7 @@ class Rating(models.Model):
 		
 class Image(models.Model):
 	bathroom = models.ForeignKey(Bathroom, on_delete=models.CASCADE)
-	image = models.ImageField(upload_to='photos')
+	image = models.ImageField(upload_to='photos/')
 	
 	def __str__(self):
 		return "Image of " + self.bathroom.name
