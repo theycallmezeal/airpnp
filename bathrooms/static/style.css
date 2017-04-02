@@ -41,13 +41,13 @@ hr {
 	position: relative;
 }
 
-#back-link a {
+#navbutton a {
 	position: absolute;
 	right: 0px;
 	top: 0px;
 }
 
-#back-link a, input[type=submit] {
+#navbutton a, input[type=submit] {
 	color: #ffffff;
 	background-color: #2cdd6a;
 	padding: 10px;
@@ -57,7 +57,7 @@ hr {
 	font-size: inherit;
 }
 
-#back-link a:hover, input[type=submit]:hover {
+#navbutton a:hover, input[type=submit]:hover {
 	-webkit-box-shadow: 2px 2px 0px #999999;
 	-moz-box-shadow: 2px 2px 0px 0px #999999;
 	box-shadow: 2px 2px 0px 0px #999999;
@@ -140,6 +140,10 @@ td, th {
 
 tr:nth-child(even) {
 	background-color: #eeeeee;
+}
+
+td:nth-child(3), td:nth-child(4) {
+	color: #2cdd6a;
 }
 
 iframe {

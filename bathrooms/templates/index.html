@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Airpnp</title>
+		<meta charset="utf/8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=1">
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}" />
+	</head>
+	<body>
+		<header>
+			<h1>Airpnp is the premiere bathroom catalog.</h1>
+
+			<p>Airpnp is a leading global professional services company providing a range of enterprise, strategy, consulting, digital, technology & urination services and solutions.</p>
+			
+			<p id="button"><a href="{% url 'bathrooms:list' %}">See bathrooms</a></p>
+		</header>
+
+		<h2>No, but seriously?</h2>
+
+		<p>Hi, my name is Adam An and I made this at a hackathon to teach myself Django.</p>
+	</body>
+</html>

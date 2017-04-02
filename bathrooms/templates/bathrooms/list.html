@@ -1,7 +1,11 @@
 {% extends "bathrooms/template.html" %}
 
 {% block content %}
-<h1>Airpnp - all bathrooms</h1>
+
+<div id="title">
+	<h1>Airpnp - all bathrooms</h1>
+	<p id="navbutton"><a href="{% url 'index' %}">About Airpnp</a></p>
+</div>
 
 {% if bathroom_list %}
 	<table>
@@ -15,8 +19,8 @@
 		<tr>
 			<td><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></td>
 			<td>{{ bathroom.location.human_readable_location }}</td>
-			<td>{{ rating.cleanliness }}</td>
-			<td>{{ rating.amenities }}</td>
+			<td>{{ rating.cleanliness|safe|escape }}</td>
+			<td>{{ rating.amenities|safe|escape }}</td>
 		</tr>
 	{% endfor %}
 	</table>

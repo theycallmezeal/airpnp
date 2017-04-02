@@ -7,7 +7,12 @@ def list(request):
 	ratings_list = []
 	for bathroom in bathroom_list:
 		ratings = Rating.objects.filter(bathroom__id=bathroom.id)
-		ratings_list.append(getRatings(bathroom, ratings))
+		numberRatings = getRatings(bathroom, ratings)
+		starRatings = {
+			'cleanliness': numToStars(numberRatings['cleanliness']),
+			'amenities': numToStars(numberRatings['amenities']),
+		}
+		ratings_list.append(starRatings)
 	
 	return render(request, 'bathrooms/list.html', {
 		'bathroom_list': zip(bathroom_list, ratings_list)
@@ -21,6 +26,9 @@ def detail(request, bathroom_id):
 	results = getRatings(bathroom, ratings)
 	cleanliness_rating = results['cleanliness']
 	amenities_rating = results['amenities']
+	
+	cleanliness_stars = numToStars(cleanliness_rating)
+	amenities_stars = numToStars(amenities_rating)
 		
 	gender = 'Mens\''
 	if bathroom.gender == 1:
@@ -32,6 +40,8 @@ def detail(request, bathroom_id):
 		'bathroom': bathroom,
 		'cleanliness_rating': cleanliness_rating,
 		'amenities_rating': amenities_rating,
+		'cleanliness_stars': cleanliness_stars,
+		'amenities_stars': amenities_stars,
 		'images': images,
 		'gender': gender
 	})
@@ -66,3 +76,10 @@ def getRatings(bathroom, ratings):
 		'cleanliness': cleanliness_rating,
 		'amenities': amenities_rating
 	}
+	
+def numToStars(rating):
+	rating = round(rating)
+	string = ''
+	for i in range(rating):
+		string += '&#9733;'
+	return string
