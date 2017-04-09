@@ -22,7 +22,7 @@ class Bathroom(models.Model):
 	windows = models.PositiveSmallIntegerField()
 	
 	location = models.ForeignKey(Location, on_delete=models.CASCADE)
-	location_desc = models.CharField(max_length=300)
+	location_desc = models.CharField(max_length=300, blank=True)
 	
 	def __str__(self):
 		return self.name
