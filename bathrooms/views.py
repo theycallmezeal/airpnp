@@ -13,13 +13,13 @@ def list(request):
 		heading = 'single bathrooms'
 	if filtertype == 'mens':
 		bathroom_list = Bathroom.objects.filter(gender=0)
-		heading = 'mens\' rooms'
+		heading = 'men\'s rooms'
 	if filtertype == 'womens':
 		bathroom_list = Bathroom.objects.filter(gender=1)
-		heading = 'womens\' rooms'
+		heading = 'women\'s rooms'
 	if filtertype == 'genderneutral':
 		bathroom_list = Bathroom.objects.filter(gender=2)
-		heading = 'gender neutral rooms'
+		heading = 'gender-neutral rooms'
 	
 	length = len(bathroom_list)
 	
@@ -51,9 +51,9 @@ def detail(request, bathroom_id):
 	cleanliness_stars = numToStars(cleanliness_rating)
 	amenities_stars = numToStars(amenities_rating)
 		
-	gender = 'Mens\''
+	gender = 'Men\'s'
 	if bathroom.gender == 1:
-		gender = 'Womens\''
+		gender = 'Women\'s'
 	if bathroom.gender == 2:
 		gender = 'Gender-neutral'
 	

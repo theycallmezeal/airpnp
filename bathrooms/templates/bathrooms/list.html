@@ -20,8 +20,8 @@
 		<tr>
 			<td><a href="{% url 'bathrooms:detail' bathroom.id %}">{{ bathroom.name }}</a></td>
 			<td>
-				{% if bathroom.gender == 0 %} Mens' {% endif %}
-				{% if bathroom.gender == 1 %} Womens' {% endif %}
+				{% if bathroom.gender == 0 %} Men's {% endif %}
+				{% if bathroom.gender == 1 %} Women's {% endif %}
 				{% if bathroom.gender == 2 %} Gender-neutral {% endif %}
 			</td>
 			<td>{{ bathroom.location.human_readable_location }}</td>
@@ -38,5 +38,5 @@
 	
 {% endif %}
 
-<p>Filter by: <a href="{% url 'bathrooms:list' %}">All</a> <a href="{% url 'bathrooms:list' %}?filtertype=singles">Singles</a> <a href="{% url 'bathrooms:list' %}?filtertype=mens">Mens'</a> <a href="{% url 'bathrooms:list' %}?filtertype=womens">Womens'</a> <a href="{% url 'bathrooms:list' %}?filtertype=genderneutral">Gender-neutral</a>
+<p>Filter by: <a href="{% url 'bathrooms:list' %}">All</a> <a href="{% url 'bathrooms:list' %}?filtertype=singles">Singles</a> <a href="{% url 'bathrooms:list' %}?filtertype=mens">Men's</a> <a href="{% url 'bathrooms:list' %}?filtertype=womens">Women's</a> <a href="{% url 'bathrooms:list' %}?filtertype=genderneutral">Gender-neutral</a>
 {% endblock %}
