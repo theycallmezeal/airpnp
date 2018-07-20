@@ -33,8 +33,12 @@ def list(request):
 		}
 		ratings_list.append(starRatings)
 	
+	view_list = zip(bathroom_list, ratings_list)
+	view_list = sorted(view_list, key=lambda bathroom_tuple: bathroom_tuple[0].name)
+	view_list = sorted(view_list, key=lambda bathroom_tuple: bathroom_tuple[0].location.human_readable_location)
+	
 	return render(request, 'bathrooms/list.html', {
-		'bathroom_list': zip(bathroom_list, ratings_list),
+		'bathroom_list': view_list,
 		'heading': heading,
 		'length': length
 	})
